@@ -1,3 +1,4 @@
+import { Role } from './role';
 export class User {
     userId!: Number;
     firstName!: string;
@@ -9,10 +10,6 @@ export class User {
     city!: string;
     state!: string;
     pincode!: string;
-    role!: [{
-        roleId: Number,
-        roleName: string
-    }
-    ]
-
+    photo!: string;
+    role!: Role;
 }
