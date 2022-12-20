@@ -9,9 +9,9 @@ export class User {
     city!: string;
     state!: string;
     pincode!: string;
-    role!:[{
-
-        roleId:Number,
+    role!: [{
+        roleId: Number,
+        roleName: string
     }
     ]
 

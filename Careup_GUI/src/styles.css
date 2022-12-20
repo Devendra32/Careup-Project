@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+        background: linear-gradient(rgba(0, 0, 0, 0.733),rgba(0, 0, 0, 0.726)),url("./assets/images/bg-image.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size:cover;
+        min-height: 100vh;
+
+        
+}

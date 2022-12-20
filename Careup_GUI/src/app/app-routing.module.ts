@@ -3,12 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { CareupHomeComponent } from './careup/careup-home/careup-home.component';
 import { UserListComponent } from './careup/user-list/user-list.component';
 import { UserComponent } from './careup/user/user.component';
+import { UpdateUserComponent } from './careup/update-user/update-user.component';
 
 
 const routes: Routes = [
   {path: 'home', component:CareupHomeComponent},
   {path:'add-user',component:UserComponent},
   {path:'users',component:UserListComponent},
+  {path:'update-user',component:UpdateUserComponent},
   {path: '', redirectTo: 'home', pathMatch:'full'}
 ];
 

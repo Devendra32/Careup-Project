@@ -1,13 +1,9 @@
 .container {
     background-color: #2c2b69;
-    /* width: 50vw; */
-    /* height: 90vh !important;  */
-    /* border: 2px solid green; */
+    margin-bottom: 5rem;
 }
 
 .header {
-    /* background-color: #2C2B69; */
-    /* border: 2px solid red; */
     border-bottom: 2px solid red;
     margin-top: -8px;
 }
