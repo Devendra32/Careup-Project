@@ -23,3 +23,13 @@
         width: 50vw;
     }
 }
+@media screen and (max-width:390px) {
+    .table-role-list{
+        height: 40vh;
+    }    
+}
+@media screen and (max-height:560px) {
+    .table-role-list{
+        height: 30vh;
+    }    
+}
