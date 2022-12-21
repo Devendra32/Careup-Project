@@ -9,7 +9,7 @@
             <!-- [(ngModel)] = "user.role.roleId" name="role"> -->
             <select class="form-control" name="selectRole" id="selectRole">
                     <Option>--Select Role--</Option>
-                    <option *ngFor="let role of roles">{{role.roleId+" "+role.roleName}}</option>
+                    <option *ngFor="let role of roles">{{role.roleName}}</option>
             </select>
             
         </div>
@@ -68,7 +68,7 @@
             <button type="submit" class="btn btn-primary col-12">Submit</button>
         </div>
         <div class="col-6 text-center">
-            <button type="text" class="btn btn-info px-4 col-12 text-white">Reset</button>
+            <button type="reset" class="btn btn-info px-4 col-12 text-white">Reset</button>
         </div>
     </form>
 </div>

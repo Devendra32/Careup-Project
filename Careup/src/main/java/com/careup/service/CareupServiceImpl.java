@@ -114,6 +114,7 @@ public class CareupServiceImpl implements CareupService {
         }catch (Exception e){
             apiResponse.setMsg("Failed to add role...");
             e.printStackTrace();
+            throw e;
         }
         return apiResponse;
     }
