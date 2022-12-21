@@ -43,8 +43,8 @@ public class CareupController {
         ApiResponse role1 = this.careupService.addRole(role);
         return new ResponseEntity<>(role1,HttpStatus.OK);
     }
-//    @GetMapping("/get-role")
-//    public List<Role> getRole(){
-//        return this.careupService.getRole();
-//    }
+    @GetMapping("/get-role")
+    public List<Role> findAllRoles(){
+        return this.careupService.findAllRoles();
+    }
 }

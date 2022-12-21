@@ -1,0 +1,25 @@
+.table-role-list{
+    overflow: auto;
+    height: 55vh;
+    border-radius: 12px;
+}
+.table-role-list thead th{
+    position: sticky;
+    top: 0;
+    background: rgba(0, 0, 0, 0.918);
+}
+.table{
+    background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.6));
+    padding: 5px;
+    border-radius: 12px;
+}
+.role-list h4{
+    background: blue;
+    padding: 3px;
+    border-radius: 12px;
+}
+@media screen and (min-width:1200px) {
+    .container{
+        width: 50vw;
+    }
+}

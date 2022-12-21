@@ -1,7 +1,5 @@
 package com.careup.validation;
-
-import org.springframework.stereotype.Component;
-
+import org.springframework.stereotype.Component; 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,11 +15,9 @@ public class CareupValidation {
     public boolean mobileValidation(String mobile) {
         return Pattern.matches("[6789][0-9]{9}", mobile);
     }
-
     public boolean pincodeValidation(String pincode) {
         return Pattern.matches("[1-9][0-9]{5}", pincode);
     }
-
     public boolean isBase64Encoded(String s) {
         String substring="";
         if (!(s.length()<30)){

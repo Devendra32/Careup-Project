@@ -9,5 +9,9 @@ public class JavaTest {
 //        System.out.println(s1.equalsIgnoreCase(s2));
 //        System.out.println(s1.substring(0,9));
         System.out.println(s1.isBlank());
+        long l = 89l;
+        String s = String.valueOf(l);
+        System.out.println(s);
+
     }
 }

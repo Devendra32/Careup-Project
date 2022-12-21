@@ -46,13 +46,15 @@ public class CareupServiceImpl implements CareupService {
         } else if (!validation.pincodeValidation(user.getPincode())) {
             apiResponse.setMsg("Pin code is not valid");
             return apiResponse;
-        } else if (!validation.isBase64Encoded(user.getPhoto())) {
-            apiResponse.setMsg("Invalid base64...");
-            return apiResponse;
-        } else {
+        }
+//        else if (!validation.isBase64Encoded(user.getPhoto())) {
+//            apiResponse.setMsg("Invalid base64...");
+//            return apiResponse;
+//        }
+        else {
             try {
-                String fileName = service.saveImg(user.getPhoto());
-                user.setPhoto(fileName);
+//                String fileName = service.saveImg(user.getPhoto());
+//                user.setPhoto(fileName);
                 userRepo.save(user);
                 apiResponse.setMsg("User successfully added...");
             } catch (Exception e) {
@@ -116,11 +118,11 @@ public class CareupServiceImpl implements CareupService {
         return apiResponse;
     }
 
-//    @Override
-//    public List<Role> getRole() {
-//        List<Role> roles = (List<Role>) roleRepo.findAll();
-//        return roles;
-//    }
+    @Override
+    public List<Role> findAllRoles() {
+        List<Role> roles = roleRepo.findAll();
+        return roles;
+    }
 
 //    @Override
 //    public List<User> getUserByRole(Role role) {
