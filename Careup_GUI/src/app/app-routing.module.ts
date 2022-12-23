@@ -4,7 +4,7 @@ import { CareupHomeComponent } from './careup/careup-home/careup-home.component'
 import { UserListComponent } from './careup/user-list/user-list.component';
 import { UserComponent } from './careup/user/user.component';
 import { UpdateUserComponent } from './careup/update-user/update-user.component';
-import { AddRoleComponent } from './add-role/add-role.component';
+import { AddRoleComponent } from './careup/add-role/add-role.component';
 
 
 const routes: Routes = [
