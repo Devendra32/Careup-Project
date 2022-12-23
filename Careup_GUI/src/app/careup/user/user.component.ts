@@ -17,10 +17,10 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getRoles();
+    // this.getRoles();
   }
-  onSubmit() {
-    console.log(this.user.role);
+  onSubmit(data:any) {
+    console.log(data);
     // this.saveUser();
   }
   saveUser() {
@@ -37,6 +37,12 @@ export class UserComponent implements OnInit {
       this.roles = data;
     });
   }
- 
+  numberOnly(event: { which: any; keyCode: any; }): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+  }
 
 }
