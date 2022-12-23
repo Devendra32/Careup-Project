@@ -26,7 +26,7 @@ export class AddRoleComponent implements OnInit {
   addRole() {
     this.userService.addRole(this.role).subscribe(data => {
       console.log(data, alert("Role Successfully Added..."));
-      
+      this.getRoles();
     },
       error => console.log(error, alert("Role Already Exist...")));
   }

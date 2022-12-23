@@ -1,74 +1,114 @@
 <div class="container text-white">
-    <form class="row g-2 p-4" (ngSubmit)="onSubmit()">
+    <form #userRegForm="ngForm" class="row g-2 p-4" (ngSubmit)="onSubmit()">
         <div class="text-center header">
             <h4 class="">Registration Page</h4>
         </div>
+        
+        <!-- SELECT ROLE -->
         <div class="col-6">
-             <label for="inputRole" class="form-label">Role</label>
-           <!-- <input type="text" class="form-control" id="inputRole" required /> -->
-            <!-- [(ngModel)] = "user.role.roleId" name="role"> -->
-            <select class="form-control" name="selectRole" id="selectRole">
+             <label for="selectRole" class="form-label">Role</label>
+            <select #role="ngModel" class="form-control" name="selectRole" id="selectRole"
+            ngModel required
+            [(ngModel)] = "user.role.roleName">
                     <Option>--Select Role--</Option>
                     <option *ngFor="let role of roles">{{role.roleName}}</option>
             </select>
-            
+            <span *if="role.invalid && role.touched" class="error-msg">Role select valid role</span>
         </div>
+
+        <!-- PHOTO -->
          <div class="col-6">
             <label for="formFile" class="form-label">Photo</label>
             <input class="form-control" type="file" id="formFile"
-            [(ngModel)] = "user.photo" name="photo" />
+            name="photo" />
+            
         </div>
+
+        <!-- FIRST NAME -->
         <div class="col-md-6">
             <label for="firstName" class="form-label">First Name</label>
-            <input type="text" class="form-control" id="firstName"
-            [(ngModel)] = "user.firstName" name="firstName" required />
+            <input #firstName="ngModel" type="text" class="form-control" id="firstName"
+            ngModel minlength="3" maxlength="50" required pattern="[a-zA-Z]*"
+             [(ngModel)] = "user.firstName" name="firstName" />
+             <span *if="firstName.invalid && firstName.touched" class="error-msg">Role select valid role</span>
         </div>
+
+
+        <!-- LAST NAME -->
         <div class="col-md-6">
             <label for="lastName" class="form-label">Last Name</label>
             <input type="text" class="form-control" id="lastName"
             [(ngModel)] = "user.lastName" name="lastName" />
+            <span *if="lastName.invalid && lastName.touched" class="error-msg">Role select valid role</span>
         </div>
+
+        <!-- EMAIL ID -->
         <div class="col-md-6">
             <label for="inputEmail4" class="form-label">Email</label>
             <input type="email" class="form-control" id="inputEmail4"
-            [(ngModel)] = "user.emailId" name="emailId" required />
+            [(ngModel)] = "user.emailId" name="emailId"/>
+            <span *if="email.invalid && email.touched" class="error-msg">Role select valid role</span>
         </div>
+
+        <!-- MOBILE NUMBER -->
         <div class="col-md-6">
             <label for="mobileNumber" class="form-label">Mobile Number</label>
             <input type="text" class="form-control" id="mobileNumber"
-            [(ngModel)] = "user.mobileNo" name="mobileNo" required />
+            [(ngModel)] = "user.mobileNo" name="mobileNo"  />
+            <span *if="mobile.invalid && mobile.touched" class="error-msg">Role select valid role</span>
         </div>
+
+        <!-- ADDRESS1  -->
         <div class="col-12">
             <label for="inputAddress" class="form-label">Address</label>
             <input type="text" class="form-control" id="inputAddress" placeholder="House No./Village"
-            [(ngModel)] = "user.address" name="address" required />
+            [(ngModel)] = "user.address"  name="address" />
+            <span *if="address.invalid && address.touched" class="error-msg">Role select valid role</span>
         </div>
+
+        <!-- ADDRESS 2 -->
         <div class="col-12">
             <label for="inputAddress2" class="form-label">Address 2</label>
             <input type="text" class="form-control" id="inputAddress2" placeholder="Area, Street or Landmark"
-            [(ngModel)] = "user.address2" name="address2">
+            [(ngModel)] = "user.address2"  name="address2">
+            <span *if="address2.invalid && address2.touched" class="error-msg">Role select valid role</span>
         </div>
+
+        <!-- CITY -->
         <div class="col-md-6">
             <label for="inputCity" class="form-label">City</label>
             <input type="text" class="form-control" id="inputCity"
-            [(ngModel)] = "user.city" name="city" required />
+            [(ngModel)] = "user.city"  name="city" />
+            <span *if="city.invalid && city.touched" class="error-msg">Role select valid role</span>
         </div>
+
+        <!-- STATE  -->
         <div class="col-md-4">
             <label for="inputState" class="form-label">State</label>
             <input type="text" id="inputState" class="form-control" 
-            [(ngModel)] = "user.state" name="state" required />
+            [(ngModel)] = "user.state"  name="state" />
+            <span *if="state.invalid && state.touched" class="error-msg">Role select valid role</span>
         </div>
+
+        <!-- PINCODE  -->
         <div class="col-md-2">
             <label for="inputZip" class="form-label">Pincode</label>
             <input type="text" class="form-control" id="inputZip"
-            [(ngModel)] = "user.pincode" name="pincode" required />
+            [(ngModel)] = "user.pincode"  name="pincode" 
+             ngModel required #pincode="ngModel" />
+             <span *if="pincode.invalid && pincode.touched" class="error-msg">Role select valid role</span>
         </div>
-       
+      
+        <!-- SUBMIT BUTTON -->
         <div class="col-6 text-center">
             <button type="submit" class="btn btn-primary col-12">Submit</button>
         </div>
+
+        <!-- RESET BUTTON  -->
         <div class="col-6 text-center">
             <button type="reset" class="btn btn-info px-4 col-12 text-white">Reset</button>
         </div>
+
+        <!-- FORM END -->
     </form>
 </div>

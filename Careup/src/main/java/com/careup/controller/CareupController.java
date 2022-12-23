@@ -17,18 +17,21 @@ public class CareupController {
     @Autowired
     private CareupService careupService;
 
+    //find all users
     @GetMapping("/users")
     public List<User> findAllUser(){
         return this.careupService.findAllUser();
 //        return  new ResponseEntity<>(user, HttpStatus.OK);
     }
 
+    //Add new user
     @PostMapping("/add-user")
     public ResponseEntity<ApiResponse> addUser(@RequestBody User user){
         ApiResponse result = this.careupService.addUser(user);
         return  new ResponseEntity<>(result, HttpStatus.OK);
     }
 
+    //find user by first name / last name / userId/ email
     @GetMapping("/get-user")
     public List<User> getUser(@RequestBody User user){
         return this.careupService.getUser(user);
@@ -38,11 +41,14 @@ public class CareupController {
 //        return careupService.getUserByRole(role);
 //    }
 
+    //Add new role
     @PostMapping("/add-role")
     public ResponseEntity<ApiResponse> addRole(@RequestBody Role role){
         ApiResponse role1 = this.careupService.addRole(role);
         return new ResponseEntity<>(role1,HttpStatus.OK);
     }
+
+    //Final all the roles
     @GetMapping("/get-role")
     public List<Role> findAllRoles(){
         return this.careupService.findAllRoles();

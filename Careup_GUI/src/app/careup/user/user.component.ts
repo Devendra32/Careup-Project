@@ -4,7 +4,7 @@ import { User } from 'src/app/user';
 import { UserService } from 'src/app/user.service';
 
 @Component({
-  selector:'add-user',
+  selector: 'add-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
@@ -12,28 +12,31 @@ export class UserComponent implements OnInit {
   user: User = new User();
   roles!: Role[];
 
-  constructor(private userService: UserService) { 
-    
+  constructor(private userService: UserService) {
+
   }
 
   ngOnInit(): void {
     this.getRoles();
   }
-  onSubmit(){
+  onSubmit() {
     console.log(this.user.role);
+    // this.saveUser();
   }
-  saveUser(){
+  saveUser() {
     this.userService.addUser(this.user).subscribe(data => {
-       console.log(data);
-       alert("User added successfully...")
+      console.log(data);
+      alert("User added successfully...");
     },
-    error => console.log(error));
+      error => console.log(error));
+    alert("Failed to add user...");
   }
 
-  private getRoles(){
+  private getRoles() {
     this.userService.getRoleList().subscribe(data => {
       this.roles = data;
     });
   }
+ 
 
 }
