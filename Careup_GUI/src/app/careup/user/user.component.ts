@@ -11,20 +11,39 @@ import { UserService } from 'src/app/user.service';
 export class UserComponent implements OnInit {
   user: User = new User();
   roles!: Role[];
-
+  jsonObject:any;
   constructor(private userService: UserService) {
 
   }
 
   ngOnInit(): void {
-    // this.getRoles();
+    this.getRoles();
   }
-  onSubmit(data:any) {
-    console.log(data);
-    // this.saveUser();
+  onSubmit(data: any) {
+   // data ={role:data.roleId};
+    this.user = data;
+   //console.log(data);     
+    console.log(this.user);
+   // this.user.role = data.roleId;
+   this.jsonObject = {
+    "firstName":data.firstName,
+    "lastName":data.lastName,
+    "emailId":data.emailId,
+    "mobileNo":data.mobileNo,
+    "address":data.address,
+    "address2":data.address2,
+    "city":data.city,
+    "state":data.state,
+    "pincode":data.pincode,
+    "role":{
+      "roleId":data.roleId
+    }
+   }
+   console.log(this.jsonObject);
+   this.saveUser();
   }
   saveUser() {
-    this.userService.addUser(this.user).subscribe(data => {
+    this.userService.addUser(this.jsonObject).subscribe(data => {
       console.log(data);
       alert("User added successfully...");
     },
@@ -35,6 +54,8 @@ export class UserComponent implements OnInit {
   private getRoles() {
     this.userService.getRoleList().subscribe(data => {
       this.roles = data;
+      console.log("Data: ", this.roles);
+      
     });
   }
   numberOnly(event: { which: any; keyCode: any; }): boolean {
@@ -44,5 +65,4 @@ export class UserComponent implements OnInit {
     }
     return true;
   }
-
 }

@@ -26,6 +26,7 @@ input.ng-invalid.ng-touched{
     -webkit-box-shadow: inset 0 1px 1px rgb(147, 212, 110), 0 0 8px rgb(51, 255, 0);
     box-shadow: inset 0 1px 1px rgba(119, 240, 89, 0.699), 0 0 8px rgb(9, 255, 0);
 }
+
 .error-msg{
     color: red;
 }
