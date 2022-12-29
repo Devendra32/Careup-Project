@@ -10,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.xml.bind.DatatypeConverter;
 import java.io.*;
-import java.util.List;
-import java.util.Properties;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class CareupServiceImpl implements CareupService {
@@ -25,12 +23,13 @@ public class CareupServiceImpl implements CareupService {
     @Autowired
     private ApiResponse apiResponse;
 
+    //Get all users
     @Override
     public List<User> findAllUser() {
-        List<User> userList = userRepo.findAll();
-        return userList;
+        return userRepo.findAll();
     }
 
+    //Add new user
     @Override
     public ApiResponse addUser(User user) {
         ApiResponse apiResponse = new ApiResponse();
@@ -56,6 +55,7 @@ public class CareupServiceImpl implements CareupService {
 //                String fileName = service.saveImg(user.getPhoto());
 //                user.setPhoto(fileName);
                 userRepo.save(user);
+                apiResponse.setObj(user);
                 apiResponse.setMsg("User successfully added...");
             } catch (Exception e) {
                 apiResponse.setMsg("Failed to add user...");
@@ -65,6 +65,19 @@ public class CareupServiceImpl implements CareupService {
         }
     }
 
+    //Update user
+    @Override
+    public ApiResponse updateUser(User user, int id) {
+        User byId =(User) userRepo.findById(id).get();
+        if(userRepo.existsById(user.getUserId())){
+           User savedUser = userRepo.save(user);
+           apiResponse.setObj(savedUser);
+           apiResponse.setMsg("Updated successfully");
+       }
+            return apiResponse;
+    }
+
+    //Get user by firstname/lastname/userid/emailid
     @Override
     public List<User> getUser(User user) {
         List<User> users = userRepo.findByFirstNameOrLastNameOrUserIdOrEmailId(
@@ -75,7 +88,7 @@ public class CareupServiceImpl implements CareupService {
         return users;
     }
 
-
+    //save image in directory
     @Override
     public String saveImg(String base64Img) {
         String fileName = UUID.randomUUID().toString();
@@ -106,6 +119,8 @@ public class CareupServiceImpl implements CareupService {
         return fileName;
     }
 
+
+    //Add new role
     @Override
     public ApiResponse addRole(Role role) {
         try{
@@ -119,6 +134,7 @@ public class CareupServiceImpl implements CareupService {
         return apiResponse;
     }
 
+    //get all roles
     @Override
     public List<Role> findAllRoles() {
         List<Role> roles = roleRepo.findAll();

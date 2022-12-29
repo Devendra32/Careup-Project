@@ -36,6 +36,15 @@ public class CareupController {
     public List<User> getUser(@RequestBody User user){
         return this.careupService.getUser(user);
     }
+
+    //update user
+    @PutMapping("/update-user")
+    public ResponseEntity<ApiResponse> updateUser(@RequestBody User userDetails){
+        ApiResponse updatedUser = this.careupService.updateUser(userDetails);
+        return new ResponseEntity<>(updatedUser,HttpStatus.OK);
+    }
+
+
 //    @GetMapping("/get-user-role")
 //    public List<User> getUserByRole(@RequestBody Role role){
 //        return careupService.getUserByRole(role);
