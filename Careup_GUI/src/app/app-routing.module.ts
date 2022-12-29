@@ -11,7 +11,7 @@ const routes: Routes = [
   {path: 'home', component:CareupHomeComponent},
   {path:'add-user',component:UserComponent},
   {path:'users',component:UserListComponent},
-  {path:'update-user',component:UpdateUserComponent},
+  {path:'update-user/:id',component:UpdateUserComponent},
   {path:'add-role',component:AddRoleComponent},
   {path: '', redirectTo: 'home', pathMatch:'full'}
 ];

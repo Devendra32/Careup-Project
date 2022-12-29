@@ -8,6 +8,7 @@ import com.careup.repository.UserRepo;
 import com.careup.validation.CareupValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import javax.xml.bind.DatatypeConverter;
 import java.io.*;
 import java.util.*;
@@ -65,16 +66,50 @@ public class CareupServiceImpl implements CareupService {
         }
     }
 
+    @Override
+    public User findUserById(int id) {
+        if (userRepo.existsById(id)) {
+            return userRepo.findById(id).get();
+
+        } else {
+            return null;
+        }
+    }
+
     //Update user
     @Override
-    public ApiResponse updateUser(User user, int id) {
-        User byId =(User) userRepo.findById(id).get();
-        if(userRepo.existsById(user.getUserId())){
-           User savedUser = userRepo.save(user);
-           apiResponse.setObj(savedUser);
-           apiResponse.setMsg("Updated successfully");
-       }
+    public ApiResponse updateUser(User user) {
+        if (userRepo.existsById(user.getUserId())) {
+            User savedUser = userRepo.save(user);
+            apiResponse.setObj(savedUser);
+            apiResponse.setMsg("Updated successfully");
+        }
+        return apiResponse;
+    }
+
+    @Override
+    public ApiResponse updateUserDetails(User userDetails, int id) {
+        if (userRepo.existsById(id)) {
+            User user = userRepo.findById(id).get();
+            user.setFirstName(userDetails.getFirstName());
+            user.setLastName(userDetails.getLastName());
+            user.setMobileNo(userDetails.getMobileNo());
+            user.setEmailId(userDetails.getEmailId());
+            user.setAddress(userDetails.getAddress());
+            user.setAddress2(userDetails.getAddress2());
+            user.setCity(userDetails.getCity());
+            user.setState(userDetails.getState());
+            user.setPincode(userDetails.getPincode());
+            user.setRole(userDetails.getRole());
+            userRepo.save(user);
+            apiResponse.setObj(user);
+            apiResponse.setMsg("User updated successfully...");
             return apiResponse;
+        } else {
+            apiResponse.setObj(null);
+            apiResponse.setMsg("Faied to update user....");
+        }
+        return apiResponse;
     }
 
     //Get user by firstname/lastname/userid/emailid
@@ -123,10 +158,10 @@ public class CareupServiceImpl implements CareupService {
     //Add new role
     @Override
     public ApiResponse addRole(Role role) {
-        try{
+        try {
             roleRepo.save(role);
             apiResponse.setMsg("Role Added Successfully...");
-        }catch (Exception e){
+        } catch (Exception e) {
             apiResponse.setMsg("Failed to add role...");
             e.printStackTrace();
             throw e;

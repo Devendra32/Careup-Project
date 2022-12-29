@@ -8,10 +8,13 @@ import java.util.List;
 public interface CareupService {
     public List<User> findAllUser();
     public ApiResponse addUser(User user);
+    public User findUserById(int id);
     public List<User> getUser(User user);
     public String saveImg(String base64Img);
     public ApiResponse addRole(Role role);
     public ApiResponse updateUser(User user);
+    public ApiResponse updateUserDetails(User userDetails, int id);
+
     public List<Role> findAllRoles();
 //    public List<User> getUserByRole(Role role);
 
