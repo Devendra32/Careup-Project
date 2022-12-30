@@ -5,7 +5,7 @@
                 <div class="row px-2">
                     <!-- <label for="inputRoleName" class="form-label col-3">Role Name</label> -->
                     <input #inputRoleName="ngModel" type="text" name="inputRoleName" id="inputRoleName" 
-                        class="form-control-sm mb-1 col-12" pattern="[a-zA-Z ]*" minlength="4" maxlength="50"
+                        class="form-control-sm mb-1 col-12" pattern="[a-zA-Z_ ]*" minlength="4" maxlength="50"
                         placeholder="Add New Role" [(ngModel)]="role.roleName" autocomplete="off" required
                         oninput= "this.value = this.value.toUpperCase()" />
                         <span *ngIf="inputRoleName.invalid && inputRoleName.touched" class="error-msg">Enter valid role</span>

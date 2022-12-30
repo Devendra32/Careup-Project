@@ -18,8 +18,10 @@
                 <td>{{user.emailId}}</td>
                 <td>{{user.city}}</td>
                 <td>{{user.role.roleName}}</td>
-                <td>
-                    <button (click)="updateUser(user.userId)" class="btn btn-info">Update</button>
+                <td >
+                    <button (click)="updateUser(user.userId)" class="btn btn-info btn-sm mx-1">Update</button>
+                    <button (click)="updateUser(user.userId)" class="btn btn-danger btn-sm mx-1">Delete</button>
+                    <button (click)="updateUser(user.userId)" class="btn btn-info btn-sm mx-1">View</button>
                 </td>
             </tr>
         </tbody>
