@@ -1,18 +1,32 @@
 <div class="container text-white">
-    <form #rolef="ngForm" class="row p-3" (ngSubmit)="onSubmit(rolef)  ">
+    <form class="row p-3" (ngSubmit)="onSubmit()  ">
         <div class="row">
             <div class="form-group col-8">
                 <div class="row px-2">
                     <!-- <label for="inputRoleName" class="form-label col-3">Role Name</label> -->
+<<<<<<< HEAD
                     <input #inputRoleName="ngModel" type="text" name="inputRoleName" id="inputRoleName" 
                         class="form-control-sm mb-1 col-12" pattern="[a-zA-Z_ ]*" minlength="4" maxlength="50"
                         placeholder="Add New Role" [(ngModel)]="role.roleName" autocomplete="off" required
+=======
+                    <input 
+                        type="text" 
+                        name="inputRoleName" 
+                        [(ngModel)]="role.roleName" 
+                        formControlName="inputRoleName"
+                        required
+                        minlength="4" maxlength="50"
+                        pattern="[a-zA-Z ]*" 
+                        class="form-control-sm mb-1 col-12" 
+                        placeholder="Add New Role" 
+                        autocomplete="off" 
+>>>>>>> cda442a0072e9e3f9eba396a32f44e5f8ed9636c
                         oninput= "this.value = this.value.toUpperCase()" />
-                        <span *ngIf="inputRoleName.invalid && inputRoleName.touched" class="error-msg">Enter valid role</span>
+                        <!-- <span *ngIf="inputRoleName.invalid && inputRoleName.touched" class="error-msg">Enter valid role</span> -->
                 </div>
             </div>
             <div class="text-center col-4">
-                <button [disabled]="rolef.invalid" type="submit" class="btn btn-primary btn-sm col-12">Submit</button>
+                <button type="submit" class="btn btn-primary btn-sm col-12">Submit</button>
             </div>
         </div>
         <div>
