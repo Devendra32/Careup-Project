@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Role } from 'src/app/role';
 import { UserService } from 'src/app/user.service';
-import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'add-role',
@@ -17,10 +16,9 @@ export class AddRoleComponent implements OnInit {
   ngOnInit(): void {
     this.getRoles();
   }
-  onSubmit(rolef: NgForm) {
+  onSubmit() {
     console.log(this.role);
     this.addRole();
-    rolef.reset();
 
   }
   addRole() {
@@ -28,7 +26,7 @@ export class AddRoleComponent implements OnInit {
       console.log(data, alert("Role Successfully Added..."));
       this.getRoles();
     },
-      error => console.log(error, alert("Role Already Exist...")));
+    error => console.log(error, alert("Role Already Exist...")));
   }
   private getRoles() {
     this.userService.getRoleList().subscribe(data => {
