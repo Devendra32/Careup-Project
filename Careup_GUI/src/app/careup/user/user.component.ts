@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Role } from 'src/app/role';
 import { User } from 'src/app/user';
 import { UserService } from 'src/app/user.service';
+import { FormBuilder } from '@angular/forms'
 
 @Component({
   selector: 'add-user',
@@ -11,17 +12,29 @@ import { UserService } from 'src/app/user.service';
 export class UserComponent implements OnInit {
   user: User = new User();
   roles!: Role[];
-  constructor(private userService: UserService) {
 
-  }
+  constructor(private userService: UserService, private fb: FormBuilder) {}
 
-  
+  userForm = this.fb.group({
+    userId: [""],
+    firstName: [""],
+    lastName: [""],
+    emailId: [""],
+    mobileNo: [""],
+    address: [""],
+    address2: [""],
+    city: [""],
+    state: [""],
+    pincode: [""],
+    photo: [""],
+    roleId:[""]
+  }); 
 
   ngOnInit(): void {
     this.getRoles();
   }
   onSubmit() {
-    console.log("User : ",this.user);
+    console.log("User : ",this.userForm.value);
     
    }
   saveUser() {
