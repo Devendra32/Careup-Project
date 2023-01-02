@@ -38,6 +38,7 @@ input.ng-invalid.ng-touched{
 }
 .error-msg{
     color: red;
+    margin-left: -10px;
 }
 @media screen and (min-width:1200px) {
     .container{

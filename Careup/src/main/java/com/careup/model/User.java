@@ -36,6 +36,7 @@ public class User {
     private String photo;
 
     @OneToOne
+    @JoinColumn(name ="roleId",nullable = false)
     private Role role;
 
 }

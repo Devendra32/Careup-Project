@@ -5,14 +5,14 @@
         </div>
         <!-- SELECT ROLE -->
         <div class="col-6">
-            <label for="roleId" class="form-label">Role</label>
+            <label for="role" class="form-label">Role</label>
             <select 
             class="form-control"  
-            formControlName="roleId">
-                <option [ngValue]="undefined">--Select Role--</option>
+            formControlName="role" required>
+                <option selected disabled [ngValue]="null" >--Select Role--</option>
                 <option *ngFor="let role of roles" [ngValue]="role.roleId">{{role.roleName}}</option>
             </select>
-            <!-- <span *ngIf="selectRole.invalid && selectRole.touched" class="error-msg">Selece valid role</span>  -->
+            <span *ngIf="userForm.controls['role'].invalid && userForm.controls['role'].touched" class="error-msg">Selece valid role</span> 
         </div>
 
         <!-- PHOTO -->
@@ -37,7 +37,11 @@
             oninput="this.value = this.value.toUpperCase()"
             
             />
-            <!-- <span *ngIf="firstName.invalid && firstName.touched" class="error-msg">Enter valid Firstname</span> -->
+            <span 
+                *ngIf="userForm.controls['firstName'].invalid && userForm.controls['firstName'].touched" 
+                class="error-msg">
+                Enter valid Firstname
+            </span>
         </div>
 
 
@@ -54,7 +58,11 @@
             oninput="this.value = this.value.toUpperCase()" 
             
             />
-            <!-- <span *ngIf="lastName.invalid && lastName.touched" class="error-msg">Enter valid Lastname</span> -->
+            <span 
+                *ngIf="userForm.controls['lastName'].invalid && userForm.controls['lastName'].touched" 
+                class="error-msg">
+                Enter valid Lastname
+            </span>
         </div>
 
         <!-- EMAIL ID -->
@@ -68,7 +76,9 @@
             autocomplete="off" 
             
             />
-            <!-- <span *ngIf="email.invalid && email.touched" class="error-msg">Enter valid email</span> -->
+            <span 
+            *ngIf="userForm.controls['emailId'].invalid && userForm.controls['emailId'].touched" 
+            class="error-msg">Enter valid email</span>
         </div>
 
         <!-- MOBILE NUMBER -->
@@ -85,7 +95,8 @@
             autocomplete="off" 
             
             />
-            <!-- <span *ngIf="mobileNo.invalid && mobileNo.touched" class="error-msg">Ente valid mobile</span> -->
+            <span *ngIf="userForm.controls['mobileNo'].invalid && userForm.controls['mobileNo'].touched" 
+            class="error-msg">Ente valid mobile</span>
         </div>
 
         <!-- ADDRESS1  -->
@@ -100,7 +111,8 @@
             placeholder="Village/Town" 
             autocomplete="off"
             oninput="this.value = this.value.toUpperCase()"/>
-            <!-- <span *ngIf="address.invalid && address.touched" class="error-msg">Enter valid address</span> -->
+            <span *ngIf="userForm.controls['address'].invalid && userForm.controls['address'].touched" 
+            class="error-msg">Enter valid address</span>
         </div>
 
         <!-- ADDRESS 2 -->
@@ -115,7 +127,8 @@
             placeholder="Area, Street or Landmark" 
             autocomplete="off"
             oninput="this.value = this.value.toUpperCase()"/>
-            <!-- <span *ngIf="address2.invalid && address2.touched" class="error-msg">Ente valid address</span> -->
+            <span *ngIf="userForm.controls['address2'].invalid && userForm.controls['address2'].touched"
+            class="error-msg">Ente valid address</span>
         </div>
 
         <!-- CITY -->
@@ -128,7 +141,8 @@
             class="form-control" 
             autocomplete="off" 
             oninput="this.value = this.value.toUpperCase()"/>
-            <!-- <span *ngIf="city.invalid && city.touched" class="error-msg">Enter valid city name</span> -->
+            <span *ngIf="userForm.controls['city'].invalid && userForm.controls['city'].touched" 
+            class="error-msg">Enter valid city name</span>
         </div>
 
         <!-- STATE  -->
@@ -142,7 +156,8 @@
             class="form-control" 
             autocomplete="off"
             oninput="this.value = this.value.toUpperCase()"/>
-            <!-- <span *ngIf="state.invalid && state.touched" class="error-msg">Enter valid state name</span> -->
+            <span *ngIf="userForm.controls['state'].invalid && userForm.controls['state'].touched" 
+            class="error-msg">Enter valid state name</span>
         </div>
 
         <!-- PINCODE  -->
@@ -156,7 +171,8 @@
             pattern="[1-9][0-9]{5}" 
             class="form-control" 
             (keypress)="numberOnly($event)" autocomplete="off"/>
-            <!-- <span *ngIf="pincode.invalid && pincode.touched" class="error-msg">Invalid</span> -->
+            <span *ngIf="userForm.controls['pincode'].invalid && userForm.controls['pincode'].touched"
+            class="error-msg">Invalid</span>
         </div>
 
         <!-- SUBMIT BUTTON -->

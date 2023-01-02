@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Role } from 'src/app/role';
 import { UserService } from 'src/app/user.service';
 
@@ -11,18 +12,24 @@ export class AddRoleComponent implements OnInit {
   role: Role = new Role();
   roles!: Role[];
   rolefail : string = '';
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private fb: FormBuilder) { }
+
+  roleForm = this.fb.group({
+    roleName : ['']
+  });
+
+  
 
   ngOnInit(): void {
     this.getRoles();
   }
-  onSubmit() {
-    console.log(this.role);
-    this.addRole();
+  onSubmit(roleForm : any) {
+    console.log(this.roleForm.value);
+    this.addRole(this.roleForm.value);
 
   }
-  addRole() {
-    this.userService.addRole(this.role).subscribe(data => {
+  addRole(value:any) {
+    this.userService.addRole(value).subscribe(data => {
       console.log(data, alert("Role Successfully Added..."));
       this.getRoles();
     },

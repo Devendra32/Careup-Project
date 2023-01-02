@@ -1,14 +1,12 @@
 <div class="container text-white">
-    <form class="row p-3" (ngSubmit)="onSubmit()  ">
+    <form class="row p-3" [formGroup]="roleForm" (ngSubmit)="onSubmit('roleForm.value')">
         <div class="row">
             <div class="form-group col-8">
                 <div class="row px-2">
-                    <!-- <label for="inputRoleName" class="form-label col-3">Role Name</label> -->
+                    <!-- <label for="inputRoleName" class="form-label col-4">Role Name</label> -->
                     <input 
                         type="text" 
-                        name="inputRoleName" 
-                        [(ngModel)]="role.roleName" 
-                        formControlName="inputRoleName"
+                        formControlName="roleName"
                         required
                         minlength="4" maxlength="50"
                         pattern="[a-zA-Z ]*" 
@@ -16,7 +14,8 @@
                         placeholder="Add New Role" 
                         autocomplete="off" 
                         oninput= "this.value = this.value.toUpperCase()" />
-                        <!-- <span *ngIf="inputRoleName.invalid && inputRoleName.touched" class="error-msg">Enter valid role</span> -->
+                        <span *ngIf="roleForm.controls['roleName'].invalid && roleForm.controls['roleName'].touched" 
+                        class="error-msg">Enter valid role</span>
                 </div>
             </div>
             <div class="text-center col-4">

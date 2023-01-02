@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Role } from 'src/app/role';
 import { User } from 'src/app/user';
 import { UserService } from 'src/app/user.service';
-import { FormBuilder } from '@angular/forms'
+import { FormBuilder, Validators } from '@angular/forms'
 
 @Component({
   selector: 'add-user',
@@ -27,7 +27,7 @@ export class UserComponent implements OnInit {
     state: [""],
     pincode: [""],
     photo: [""],
-    roleId:[""]
+    role:[""]
   }); 
 
   ngOnInit(): void {
@@ -35,10 +35,13 @@ export class UserComponent implements OnInit {
   }
   onSubmit() {
     console.log("User : ",this.userForm.value);
-    
+    this.saveUser(this.userForm.value);
    }
-  saveUser() {
-   
+   saveUser(user:any) {
+    this.userService.addUser(user).subscribe(data => {
+      console.log(data, alert("User Added successfully..."));
+    },
+    error => console.log(error, alert("Failed to add user...")));
   }
 
   private getRoles() {
