@@ -27,7 +27,7 @@ export class UserComponent implements OnInit {
     state: [""],
     pincode: [""],
     photo: [""],
-    role:[""]
+    roleId:[""]
   }); 
 
   ngOnInit(): void {
