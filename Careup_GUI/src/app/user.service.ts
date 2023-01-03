@@ -13,8 +13,8 @@ export class UserService {
   private addRoleURL = "http://localhost:8080/api/add-role";
   private usersURL = "http://localhost:8080/api/users";
   private addUserURL = "http://localhost:8080/api/add-user"; 
-  private updateUserURL = "localhost:8080/api/update-user/${id}";
-  private userByIdURL = "localhost:8080/api/user/${id}";
+  private updateUserURL = "localhost:8080/api/update-user";
+  private userByIdURL = "localhost:8080/api/user";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -26,6 +26,10 @@ export class UserService {
     return this.httpClient.post(`${this.addUserURL}`,user);
   }
 
+  updateUserDetails(user: User): Observable<object>{
+    return this.httpClient.post(`${this.updateUserURL}`,user);
+  }
+
   getRoleList(): Observable<Role[]>{
     return this.httpClient.get<Role[]>(`${this.rolesURL}`);
   }
@@ -34,9 +38,10 @@ export class UserService {
     return this.httpClient.post(`${this.addRoleURL}`,role);
   }
 
-  getUserById(): Observable<User[]>{
-    return this.httpClient.get<User[]>(`${this.userByIdURL}`);
+  getUserById(id:number): Observable<User>{
+    return this.httpClient.get<User>(`${this.userByIdURL}/${id}`);
 }
+
 
 
 }

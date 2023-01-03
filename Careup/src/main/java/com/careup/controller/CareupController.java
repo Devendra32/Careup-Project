@@ -38,11 +38,11 @@ public class CareupController {
     }
 
     //update user
-    @PutMapping("/update-user")
-    public ResponseEntity<ApiResponse> updateUser(@RequestBody User userDetails){
-        ApiResponse updatedUser = this.careupService.updateUser(userDetails);
-        return new ResponseEntity<>(updatedUser,HttpStatus.OK);
-    }
+//    @PutMapping("/update-user")
+//    public ResponseEntity<ApiResponse> updateUser(@RequestBody User userDetails){
+//        ApiResponse updatedUser = this.careupService.updateUser(userDetails);
+//        return new ResponseEntity<>(updatedUser,HttpStatus.OK);
+//    }
 
     //update user by id
     @PutMapping("/update-user/{id}")

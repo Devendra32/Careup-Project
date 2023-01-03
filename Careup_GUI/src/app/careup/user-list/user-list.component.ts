@@ -25,7 +25,7 @@ export class UserListComponent implements OnInit {
   }
 
   updateUser(id: any){
-    this.router.navigate(['update-user',id])
+    this.router.navigate(['user',id])
   }
 
   

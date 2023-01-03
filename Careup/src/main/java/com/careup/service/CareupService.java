@@ -12,7 +12,7 @@ public interface CareupService {
     public List<User> getUser(User user);
     public String saveImg(String base64Img);
     public ApiResponse addRole(Role role);
-    public ApiResponse updateUser(User user);
+//    public ApiResponse updateUser(User user);
     public ApiResponse updateUserDetails(User userDetails, int id);
 
     public List<Role> findAllRoles();

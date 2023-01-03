@@ -76,16 +76,16 @@ public class CareupServiceImpl implements CareupService {
         }
     }
 
-    //Update user
-    @Override
-    public ApiResponse updateUser(User user) {
-        if (userRepo.existsById(user.getUserId())) {
-            User savedUser = userRepo.save(user);
-            apiResponse.setObj(savedUser);
-            apiResponse.setMsg("Updated successfully");
-        }
-        return apiResponse;
-    }
+//    //Update user
+//    @Override
+//    public ApiResponse updateUser(User user) {
+//        if (userRepo.existsById(user.getUserId())) {
+//            User savedUser = userRepo.save(user);
+//            apiResponse.setObj(savedUser);
+//            apiResponse.setMsg("Updated successfully");
+//        }
+//        return apiResponse;
+//    }
 
     @Override
     public ApiResponse updateUserDetails(User userDetails, int id) {

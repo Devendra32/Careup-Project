@@ -1,0 +1,197 @@
+<div class="container text-white">
+    <form class="row g-2 p-4" (ngSubmit)="onSubmit()">
+        <div class="text-center header">
+            <h4 class="">User Update Page</h4>
+        </div>
+        <!-- SELECT ROLE -->
+        <div class="col-6">
+            <label for="roleId" class="form-label">Role</label>
+            <select class="form-control" name="role" [(ngModel)]="user.role" required>
+                <option selected [ngValue]="null">--Select Role--</option>
+                <option *ngFor="let role of roles" [ngValue]="role.roleId">{{role.roleName}}</option>
+            </select>
+            <!-- <span *ngIf="userUpdateForm.controls['role'].invalid && userUpdateForm.controls['role'].touched" class="error-msg">Selece valid role</span>  -->
+        </div>
+
+        <!-- PHOTO -->
+        <div class="col-6">
+            <label for="formFile" class="form-label">Photo</label>
+            <input class="form-control" disabled type="file" name="photo" />
+            <span class="error-msg">photo can't be changed</span>
+        </div>
+
+        <!-- FIRST NAME -->
+        <div class="col-md-6">
+            <label for="firstName" class="form-label">First Name</label>
+            <input 
+            type="text"
+            name="firstName"
+            [(ngModel)]="user.firstName"
+            required 
+            minlength="3"
+            maxlength="50" 
+            pattern="[a-zA-Z]*" 
+            class="form-control" 
+            autocomplete="off" 
+            oninput="this.value = this.value.toUpperCase()"
+            
+            />
+            <!-- <span 
+                *ngIf="userUpdateForm.controls['firstName'].invalid && userUpdateForm.controls['firstName'].touched" 
+                class="error-msg">
+                Enter valid Firstname
+            </span> -->
+        </div>
+
+
+        <!-- LAST NAME -->
+        <div class="col-md-6">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input 
+            type="text"
+            name="lastName"
+            [(ngModel)]="user.lastName" 
+            required 
+            pattern="[a-zA-Z]*" 
+            class="form-control" 
+            autocomplete="off"
+            oninput="this.value = this.value.toUpperCase()" 
+            
+            />
+            <!-- <span 
+                *ngIf="userUpdateForm.controls['lastName'].invalid && userUpdateForm.controls['lastName'].touched" 
+                class="error-msg">
+                Enter valid Lastname
+            </span> -->
+        </div>
+
+        <!-- EMAIL ID -->
+        <div class="col-md-6">
+            <label for="emailId" class="form-label">Email</label>
+            <input 
+            type="email"
+            name="emailId"
+            [(ngModel)]="user.emailId" 
+            required email  
+            class="form-control" 
+            autocomplete="off" 
+            
+            />
+            <!-- <span 
+            *ngIf="userUpdateForm.controls['emailId'].invalid && userUpdateForm.controls['emailId'].touched" 
+            class="error-msg">Enter valid email</span> -->
+        </div>
+
+        <!-- MOBILE NUMBER -->
+        <div class="col-md-6">
+            <label for="mobileNo" class="form-label">Mobile Number</label>
+            <input 
+            type="text"
+            name="mobileNo"
+            [(ngModel)]="user.mobileNo" 
+            required 
+            minlength="10" maxlength="10" 
+            pattern="[6789][0-9]{9}" 
+            class="form-control" 
+            (keypress)="numberOnly($event)" 
+            autocomplete="off" 
+            
+            />
+            <!-- <span *ngIf="userUpdateForm.controls['mobileNo'].invalid && userUpdateForm.controls['mobileNo'].touched" 
+            class="error-msg">Ente valid mobile</span> -->
+        </div>
+
+        <!-- ADDRESS1  -->
+        <div class="col-12">
+            <label for="address" class="form-label">Address</label>
+            <input 
+            type="text"
+            name="address"
+            [(ngModel)]="user.address" 
+            required 
+            pattern="[a-zA-Z ]*" 
+            class="form-control" 
+            placeholder="Village/Town" 
+            autocomplete="off"
+            oninput="this.value = this.value.toUpperCase()"/>
+            <!-- <span *ngIf="userUpdateForm.controls['address'].invalid && userUpdateForm.controls['address'].touched" 
+            class="error-msg">Enter valid address</span> -->
+        </div>
+
+        <!-- ADDRESS 2 -->
+        <div class="col-12">
+            <label for="address2" class="form-label">Address 2</label>
+            <input 
+            type="text"
+            name="address2"
+            [(ngModel)]="user.address2" 
+            required 
+            pattern="[a-zA-Z ]*" 
+            class="form-control" 
+            placeholder="Area, Street or Landmark" 
+            autocomplete="off"
+            oninput="this.value = this.value.toUpperCase()"/>
+            <!-- <span *ngIf="userUpdateForm.controls['address2'].invalid && userUpdateForm.controls['address2'].touched"
+            class="error-msg">Ente valid address</span> -->
+        </div>
+
+        <!-- CITY -->
+        <div class="col-md-6">
+            <label for="city" class="form-label">City</label>
+            <input 
+            type="text"
+            name="city"
+            [(ngModel)]="user.address2" 
+            required pattern="[a-zA-Z ]*" 
+            class="form-control" 
+            autocomplete="off" 
+            oninput="this.value = this.value.toUpperCase()"/>
+            <!-- <span *ngIf="userUpdateForm.controls['city'].invalid && userUpdateForm.controls['city'].touched" 
+            class="error-msg">Enter valid city name</span> -->
+        </div>
+
+        <!-- STATE  -->
+        <div class="col-md-4">
+            <label for="state" class="form-label">State</label>
+            <input 
+            type="text"
+            name="state"
+            [(ngModel)]="user.state" 
+            required 
+            pattern="[a-zA-Z ]*" 
+            class="form-control" 
+            autocomplete="off"
+            oninput="this.value = this.value.toUpperCase()"/>
+            <!-- <span *ngIf="userUpdateForm.controls['state'].invalid && userUpdateForm.controls['state'].touched" 
+            class="error-msg">Enter valid state name</span> -->
+        </div>
+
+        <!-- PINCODE  -->
+        <div class="col-md-2">
+            <label for="pincode" class="form-label">Pincode</label>
+            <input 
+            type="text"
+            name="pincode"
+            [(ngModel)]="user.pincode" 
+            required 
+            minlength="6" maxlength="6" 
+            pattern="[1-9][0-9]{5}" 
+            class="form-control" 
+            (keypress)="numberOnly($event)" autocomplete="off"/>
+            <!-- <span *ngIf="userUpdateForm.controls['pincode'].invalid && userUpdateForm.controls['pincode'].touched"
+            class="error-msg">Invalid</span> -->
+        </div>
+
+        <!-- SUBMIT BUTTON -->
+        <div class="col-6 text-center">
+            <button type="submit" [disabled]="" class="btn btn-primary col-12">Submit</button>
+        </div>
+
+        <!-- RESET BUTTON  -->
+        <div class="col-6 text-center">
+            <button type="reset" class="btn btn-info px-4 col-12 text-white">Reset</button>
+        </div>
+
+        <!-- FORM END -->
+    </form>
+</div>
