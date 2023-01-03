@@ -27,7 +27,9 @@ export class UserComponent implements OnInit {
     state: [""],
     pincode: [""],
     photo: [""],
-    roleId:[""]
+    role:this.fb.group({
+      roleId:[""]
+    })
   }); 
 
   ngOnInit(): void {
@@ -36,6 +38,7 @@ export class UserComponent implements OnInit {
   onSubmit() {
     console.log("User : ",this.userForm.value);
     this.saveUser(this.userForm.value);
+    this.userForm.reset();
    }
    saveUser(user:any) {
     this.userService.addUser(user).subscribe(data => {

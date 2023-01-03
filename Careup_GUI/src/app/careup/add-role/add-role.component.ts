@@ -26,7 +26,7 @@ export class AddRoleComponent implements OnInit {
   onSubmit(roleForm : any) {
     console.log(this.roleForm.value);
     this.addRole(this.roleForm.value);
-
+    this.roleForm.reset();
   }
   addRole(value:any) {
     this.userService.addRole(value).subscribe(data => {

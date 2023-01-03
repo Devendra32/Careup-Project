@@ -4,10 +4,10 @@
             <h4 class="">Registration Page</h4>
         </div>
         <!-- SELECT ROLE -->
-        <div class="col-6" >
-            <label for="role" class="form-label">Role</label>
-            <select class="form-control" formControlName="role" required>
-                <option selected disabled [ngValue]="null" >--Select Role--</option>
+        <div class="col-6" formGroupName="role" >
+            <label for="roleId" class="form-label">Role</label>
+            <select class="form-control" formControlName="roleId" required>
+                <option selected [ngValue]="null" >--Select Role--</option>
                 <option *ngFor="let role of roles" [ngValue]="role.roleId">{{role.roleName}}</option>
             </select>
             <span *ngIf="userForm.controls['role'].invalid && userForm.controls['role'].touched" class="error-msg">Selece valid role</span> 
