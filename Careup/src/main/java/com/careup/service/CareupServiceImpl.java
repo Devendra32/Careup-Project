@@ -30,6 +30,12 @@ public class CareupServiceImpl implements CareupService {
         return userRepo.findAll();
     }
 
+    @Override
+    public List<User> findAllUserByStatus() {
+        return userRepo.findAllByStatus();
+    }
+
+
     //Add new user
     @Override
     public ApiResponse addUser(User user) {
@@ -111,6 +117,17 @@ public class CareupServiceImpl implements CareupService {
         }
         return apiResponse;
     }
+
+    @Override
+    public String inActive(int id) {
+        if (userRepo.existsById(id)) {
+            userRepo.inActiveUser(id);
+            return "User Deleted Successfully...";
+        } else {
+            return "Failed to Delete user Details...";
+        }
+    }
+
 
     //Get user by firstname/lastname/userid/emailid
     @Override

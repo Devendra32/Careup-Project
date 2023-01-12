@@ -6,8 +6,7 @@
         <!-- SELECT ROLE -->
         <div class="col-6">
             <label for="roleId" class="form-label">Role</label>
-            <select class="form-control" name="role" [(ngModel)]="user.role" required>
-                <option selected [ngValue]="null">--Select Role--</option>
+            <select class="form-control" name="role" [(ngModel)]="user.role.roleId" required>
                 <option *ngFor="let role of roles" [ngValue]="role.roleId">{{role.roleName}}</option>
             </select>
             <!-- <span *ngIf="userUpdateForm.controls['role'].invalid && userUpdateForm.controls['role'].touched" class="error-msg">Selece valid role</span>  -->
@@ -141,7 +140,7 @@
             <input 
             type="text"
             name="city"
-            [(ngModel)]="user.address2" 
+            [(ngModel)]="user.city" 
             required pattern="[a-zA-Z ]*" 
             class="form-control" 
             autocomplete="off" 

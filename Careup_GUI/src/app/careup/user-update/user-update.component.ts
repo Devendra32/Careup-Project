@@ -19,30 +19,29 @@ export class UserUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRoles();
-    console.log(this.roles);
-    
+       
     this.userId = this.route.snapshot.params['id'];
     this.userService.getUserById(this.userId).subscribe( data => {
-      this.user = data;
-      
+      this.user = data;  
     }, error => console.log(error));
   }
   onSubmit() {
     // console.log("User : ",this.userUpdateForm.value);
-    // this.updateUser(this.userUpdateForm.value);
-    // this.userUpdateForm.reset();
+    // console.log(this.userId);
+    console.log("userId: ",this.userId, "User: ",this.user);
+    this.updateUser(this.userId, this.user);
+    
    }
-   updateUser(user:any) {
-    this.userService.updateUserDetails(user).subscribe(data => {
-      console.log(data, alert("User Added successfully..."));
+   updateUser(userId:number , user:any) {
+    this.userService.updateUserDetails(userId,user).subscribe(data => {
+      console.log(data, alert("User Updated successfully..."));
     },
-    error => console.log(error, alert("Failed to add user...")));
+    error => console.log(error, alert("Failed to update user...")));
   }
 
   private getRoles() {
     this.userService.getRoleList().subscribe(data => {
       this.roles = data;
-      
     });
   }
   numberOnly(event: { which: any; keyCode: any; }): boolean {

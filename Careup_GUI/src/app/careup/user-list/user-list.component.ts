@@ -11,11 +11,11 @@ import { UserService } from '../../user.service'
 export class UserListComponent implements OnInit {
 
   users!: User[];
-
+  user: User = new User();
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
-    this.getUsers();
+    this.getActiveUsers();
   }
 
   private getUsers(){
@@ -24,9 +24,34 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  updateUser(id: any){
+  private getActiveUsers(){
+    this.userService.getActiveUsersList().subscribe(data => {
+      this.users = data;
+    });
+  }
+
+  getUser(id: any){
     this.router.navigate(['user',id])
   }
 
+  inActiveUser(id: any){
+
+    this.getUserById(id);
+    this.user.status=0;
+    // this.deteleUser(id, this.user);
+    console.log("id: ",id, "User: ", this.user);
+    this.getActiveUsers();
+  }
+  getUserById(id:number){
+    this.userService.getUserById(id).subscribe( data => {
+      this.user = data
+      console.log(data);
+    }, error => console.log(error));
+  }
   
+  deteleUser(userId:number , user:User) {
+    this.userService.updateUserDetails(userId,user).subscribe(data => {
+      console.log(data, alert("User Deleted successfully..."));
+    }, error => console.log(error, alert("Failed to deleted user...")));
+  }
 }

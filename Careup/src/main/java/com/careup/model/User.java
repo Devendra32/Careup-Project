@@ -34,6 +34,8 @@ public class User {
     private String pincode;
     @Column(length = 50)
     private String photo;
+    @Column(nullable = false, columnDefinition = "smallint default 1")
+    private short status;
 
     @OneToOne
     @JoinColumn(name ="roleId",nullable = false)

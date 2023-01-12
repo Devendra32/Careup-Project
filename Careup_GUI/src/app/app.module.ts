@@ -11,7 +11,7 @@ import { CareupHomeComponent } from './careup/careup-home/careup-home.component'
 import { AddRoleComponent } from './careup/add-role/add-role.component';
 import { NavbarComponent } from './careup/navbar/navbar.component';
 import { UserUpdateComponent } from './careup/user-update/user-update.component';
-
+import { UserDetailsComponent } from './careup/user-details/user-details.component';
 
 @NgModule({
     declarations: [
@@ -21,7 +21,8 @@ import { UserUpdateComponent } from './careup/user-update/user-update.component'
         CareupHomeComponent,
         AddRoleComponent,
         NavbarComponent,
-        UserUpdateComponent
+        UserUpdateComponent,
+        UserDetailsComponent
     ],
     providers: [],
     bootstrap: [AppComponent],

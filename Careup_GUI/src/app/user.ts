@@ -1,6 +1,6 @@
 import { Role } from './role';
 export class User {
-    userId!: Number;
+    userId!: number;
     firstName!: string;
     lastName!: string;
     emailId!: string;
@@ -12,5 +12,6 @@ export class User {
     pincode!: string;
     photo = "";
     role!: Role;
+    status!: number;
 }
 

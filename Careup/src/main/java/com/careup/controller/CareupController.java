@@ -17,11 +17,18 @@ public class CareupController {
     @Autowired
     private CareupService careupService;
 
-    //find all users
+
+    //Get all users
     @GetMapping("/users")
     public List<User> findAllUser(){
         return this.careupService.findAllUser();
 //        return  new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    //Get all active users
+    @GetMapping("/active-users")
+    public List<User> getUsersByStatus(){
+        return this.careupService.findAllUserByStatus();
     }
 
     //Add new user
@@ -31,7 +38,7 @@ public class CareupController {
         return  new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    //find user by first name / last name / userId/ email
+    //Get user by first name / last name / userId/ email
     @GetMapping("/get-user")
     public List<User> getUser(@RequestBody User user){
         return this.careupService.getUser(user);
@@ -51,12 +58,19 @@ public class CareupController {
         return new ResponseEntity<>(updatedUser,HttpStatus.OK);
     }
 
+    //update status
+    @PutMapping("/status/{id}")
+    public String inActiveUserDetail(@PathVariable int id){
+        return this.careupService.inActive(id);
+    }
+
     //Get by Id
     @GetMapping("/user/{id}")
     public ResponseEntity<User> findUserById(@PathVariable int id){
         User userById = this.careupService.findUserById(id);
         return new ResponseEntity<>(userById,HttpStatus.OK);
     }
+
 
 
 //    @GetMapping("/get-user-role")

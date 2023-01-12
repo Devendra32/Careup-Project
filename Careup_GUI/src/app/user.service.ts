@@ -7,14 +7,16 @@ import { Role } from './role';
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserService {
 
   private rolesURL = "http://localhost:8080/api/get-role";
   private addRoleURL = "http://localhost:8080/api/add-role";
   private usersURL = "http://localhost:8080/api/users";
   private addUserURL = "http://localhost:8080/api/add-user"; 
-  private updateUserURL = "localhost:8080/api/update-user";
-  private userByIdURL = "localhost:8080/api/user";
+  private updateUserURL = "http://localhost:8080/api/update-user";
+  private userByIdURL = "http://localhost:8080/api/user";
+  private getActiveUsersURL = "http://localhost:8080/api/active-users";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -22,12 +24,16 @@ export class UserService {
       return this.httpClient.get<User[]>(`${this.usersURL}`);
   }
 
+  getActiveUsersList(): Observable<User[]>{
+      return this.httpClient.get<User[]>(`${this.getActiveUsersURL}`);
+  }
+
   addUser(user: User): Observable<object>{
     return this.httpClient.post(`${this.addUserURL}`,user);
   }
 
-  updateUserDetails(user: User): Observable<object>{
-    return this.httpClient.post(`${this.updateUserURL}`,user);
+  updateUserDetails(id:number, user:User): Observable<object>{
+    return this.httpClient.put(`${this.updateUserURL}/${id}`,user);
   }
 
   getRoleList(): Observable<Role[]>{
@@ -40,8 +46,7 @@ export class UserService {
 
   getUserById(id:number): Observable<User>{
     return this.httpClient.get<User>(`${this.userByIdURL}/${id}`);
-}
-
+  }
 
 
 }
