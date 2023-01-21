@@ -4,6 +4,8 @@ package com.careup.model;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
+import org.springframework.beans.factory.annotation.Value;
 
 
 @Entity
@@ -34,11 +36,12 @@ public class User {
     private String pincode;
     @Column(length = 50)
     private String photo;
-    @Column(nullable = false, columnDefinition = "smallint default 1")
-    private short status;
+    @Column(nullable = false, columnDefinition = "smallint")
+    @Value("1")
+    private short status = 1;
 
     @OneToOne
-    @JoinColumn(name ="roleId",nullable = false)
+    @JoinColumn(name = "roleId", nullable = false)
     private Role role;
 
 }
