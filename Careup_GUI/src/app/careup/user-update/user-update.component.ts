@@ -51,5 +51,8 @@ export class UserUpdateComponent implements OnInit {
     }
     return true;
   }
-
+  onClick(){
+    console.log("Back button clicked!!");
+    
+  }
 }

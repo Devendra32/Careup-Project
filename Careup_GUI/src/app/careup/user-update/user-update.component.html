@@ -183,12 +183,13 @@
 
         <!-- SUBMIT BUTTON -->
         <div class="col-6 text-center">
-            <button type="submit" [disabled]="" class="btn btn-primary col-12">Submit</button>
+            <button type="submit" class="btn btn-primary col-12">Submit</button>
         </div>
 
         <!-- RESET BUTTON  -->
         <div class="col-6 text-center">
-            <button type="reset" disabled class="btn btn-info px-4 col-12 text-white">Reset</button>
+            <button type="button" (click)="onClick()" routerLink="users" class="btn btn-info px-4 col-12 text-white">Back</button>
+            <!-- <a  ></a> -->
         </div>
 
         <!-- FORM END -->
