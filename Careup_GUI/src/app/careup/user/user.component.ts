@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Role } from 'src/app/role';
 import { User } from 'src/app/user';
 import { UserService } from 'src/app/user.service';
+import { FormBuilder, Validators } from '@angular/forms'
 
 @Component({
   selector: 'add-user',
@@ -11,44 +12,39 @@ import { UserService } from 'src/app/user.service';
 export class UserComponent implements OnInit {
   user: User = new User();
   roles!: Role[];
-  jsonObject:any;
-  constructor(private userService: UserService) {
 
-  }
+  constructor(private userService: UserService, private fb: FormBuilder) {}
+
+  userForm = this.fb.group({
+    userId: [""],
+    firstName: [""],
+    lastName: [""],
+    emailId: [""],
+    mobileNo: [""],
+    address: [""],
+    address2: [""],
+    city: [""],
+    state: [""],
+    pincode: [""],
+    photo: [""],
+    role:this.fb.group({
+      roleId:[""]
+    })
+  }); 
 
   ngOnInit(): void {
     this.getRoles();
   }
-  onSubmit(data: any) {
-   // data ={role:data.roleId};
-    this.user = data;
-   //console.log(data);     
-    console.log(this.user);
-   // this.user.role = data.roleId;
-   this.jsonObject = {
-    "firstName":data.firstName,
-    "lastName":data.lastName,
-    "emailId":data.emailId,
-    "mobileNo":data.mobileNo,
-    "address":data.address,
-    "address2":data.address2,
-    "city":data.city,
-    "state":data.state,
-    "pincode":data.pincode,
-    "role":{
-      "roleId":data.roleId
-    }
+  onSubmit() {
+    console.log("User : ",this.userForm.value);
+    this.saveUser(this.userForm.value);
+    this.userForm.reset();
    }
-   console.log(this.jsonObject);
-   this.saveUser();
-  }
-  saveUser() {
-    this.userService.addUser(this.jsonObject).subscribe(data => {
-      console.log(data);
-      alert("User added successfully...");
+   saveUser(user:any) {
+    this.userService.addUser(user).subscribe(data => {
+      console.log(data, alert("User Added successfully..."));
     },
-      error => console.log(error));
-    alert("Failed to add user...");
+    error => console.log(error, alert("Failed to add user...")));
   }
 
   private getRoles() {
