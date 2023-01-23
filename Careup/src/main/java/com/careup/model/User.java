@@ -2,16 +2,15 @@ package com.careup.model;
 
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.springframework.beans.factory.annotation.Value;
 
 
 @Entity
-@RequiredArgsConstructor
+@Data
 @NoArgsConstructor
-@Getter
-@Setter
 public class User {
 
     @Id

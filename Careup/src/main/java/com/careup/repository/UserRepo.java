@@ -22,7 +22,7 @@ public interface UserRepo extends JpaRepository<User, Integer> {
     //    public List<User> findByRole(Role role);
 
 
-    //    @Modifying
-    @Query(value = "update user set status=0 where user_id=:id", nativeQuery = true)
-    public void inActiveUser(int id);
+    @Modifying
+    @Query("UPDATE User u SET u.status=0 WHERE u.user_id=:n")
+    public void inActiveUser(@Param("n") int id);
 }
