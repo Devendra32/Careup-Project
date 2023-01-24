@@ -12,6 +12,6 @@ export class User {
     pincode!: string;
     photo = "";
     role!: Role;
-    status!:number;
+    status!:boolean;
 }
 

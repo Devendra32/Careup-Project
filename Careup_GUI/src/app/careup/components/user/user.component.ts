@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Role } from 'src/app/role';
-import { User } from 'src/app/user';
-import { UserService } from 'src/app/user.service';
+import { Role } from '../../model/role';
+import { User } from '../../model/user';
+import { UserService } from '../../services/user.service';
 import { FormBuilder, Validators } from '@angular/forms'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'add-user',
@@ -13,7 +14,11 @@ export class UserComponent implements OnInit {
   user: User = new User();
   roles!: Role[];
 
-  constructor(private userService: UserService, private fb: FormBuilder) {}
+  constructor(
+    private userService: UserService, 
+    private fb: FormBuilder
+    // private router: Router
+    ) {}
 
   userForm = this.fb.group({
     userId: [""],

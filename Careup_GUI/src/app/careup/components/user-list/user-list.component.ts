@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {User} from '../../user';
-import { UserService } from '../../user.service'
+import {User} from '../../model/user';
+import { UserService } from '../../services/user.service'
 
 @Component({
   selector: 'users',
@@ -12,13 +12,15 @@ export class UserListComponent implements OnInit {
 
   users!: User[];
   user: User = new User();
+  status: boolean | undefined;
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.getActiveUsers();
+    // this.getAllUsers();
   }
 
-  private getUsers(){
+  private getAllUsers(){
     this.userService.getUsersList().subscribe(data => {
       this.users = data;
     });
@@ -35,12 +37,14 @@ export class UserListComponent implements OnInit {
   }
 
   inActiveUser(id: any){
-
-    this.getUserById(id);
-    this.user.status=0;
-    // this.deteleUser(id, this.user);
-    console.log("id: ",id, "User: ", this.user);
-    this.getActiveUsers();
+    
+    this.status=false;
+    this.userService.changeUserStatus(this.status ,id).subscribe(data => {
+      console.log(data, alert("User Deleted Successfully !!"))
+    },error => {console.log(error)});
+    
+    window.location.reload();
+    
   }
   getUserById(id:number){
     this.userService.getUserById(id).subscribe( data => {

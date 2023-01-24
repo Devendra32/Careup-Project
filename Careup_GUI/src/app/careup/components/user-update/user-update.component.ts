@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Role } from 'src/app/role';
-import { User } from 'src/app/user';
-import { UserService } from 'src/app/user.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Role } from '../../model/role';
+import { User } from '../../model/user';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'user',
@@ -15,7 +15,8 @@ export class UserUpdateComponent implements OnInit {
   userId!: number;
 
   constructor(private userService: UserService,
-    private route: ActivatedRoute) {}
+    private route: ActivatedRoute,
+    private router: Router) {}
 
   ngOnInit(): void {
     this.getRoles();
@@ -52,7 +53,6 @@ export class UserUpdateComponent implements OnInit {
     return true;
   }
   onClick(){
-    console.log("Back button clicked!!");
-    
+    this.router.navigate(['users']) 
   }
 }

@@ -4,6 +4,7 @@ import com.careup.helper.ApiResponse;
 import com.careup.model.Role;
 import com.careup.model.User;
 import com.careup.service.CareupService;
+import jakarta.persistence.PostUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,13 +46,6 @@ public class CareupController {
         return this.careupService.getUser(user);
     }
 
-    //update user
-//    @PutMapping("/update-user")
-//    public ResponseEntity<ApiResponse> updateUser(@RequestBody User userDetails){
-//        ApiResponse updatedUser = this.careupService.updateUser(userDetails);
-//        return new ResponseEntity<>(updatedUser,HttpStatus.OK);
-//    }
-
     //update user by id
     @PutMapping("/update-user/{id}")
     public ResponseEntity<ApiResponse> updateUserDetails(@RequestBody User userDetails, @PathVariable int id) {
@@ -60,9 +54,9 @@ public class CareupController {
     }
 
     //update status
-    @PutMapping("/status/{id}")
-    public String inActiveUserDetail(@PathVariable int id) {
-        return this.careupService.inActive(id);
+    @PutMapping("/status/{userStatus}/{id}")
+     public String inActiveUserDetail(@PathVariable boolean userStatus, @PathVariable int id) {
+        return this.careupService.inActive(userStatus, id);
     }
 
     //Get by Id
@@ -85,7 +79,7 @@ public class CareupController {
         return new ResponseEntity<>(role1, HttpStatus.OK);
     }
 
-    //Final all the roles
+    //Find all the roles
     @GetMapping("/get-role")
     public List<Role> findAllRoles() {
         return this.careupService.findAllRoles();

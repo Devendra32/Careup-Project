@@ -119,9 +119,11 @@ public class CareupServiceImpl implements CareupService {
     }
 
     @Override
-    public String inActive(int id) {
+    public String inActive(boolean userStatus, int id) {
         if (userRepo.existsById(id)) {
-            userRepo.inActiveUser(id);
+            User user = userRepo.findById(id).get();
+            user.setStatus(userStatus);
+            userRepo.save(user);
             return "User Deleted Successfully...";
         } else {
             return "Failed to Delete user Details...";

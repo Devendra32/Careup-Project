@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Role } from 'src/app/role';
-import { UserService } from 'src/app/user.service';
+import { Role } from '../../model/role';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'add-role',
