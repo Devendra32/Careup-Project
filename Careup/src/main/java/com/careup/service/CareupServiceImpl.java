@@ -1,5 +1,7 @@
 package com.careup.service;
 
+import com.careup.exception.InvalidUserDataException;
+import com.careup.exception.UserNotFoundException;
 import com.careup.helper.ApiResponse;
 import com.careup.model.Role;
 import com.careup.model.User;
@@ -27,14 +29,46 @@ public class CareupServiceImpl implements CareupService {
     //Get all users
     @Override
     public List<User> findAllUser() {
-        return userRepo.findAll();
+        List<User> userList = userRepo.findAll();
+        if (userList.isEmpty()) {
+            throw new UserNotFoundException("No User Found !!");
+        }
+        return userList;
     }
 
+    //Find all users by Status
     @Override
     public List<User> findAllUserByStatus() {
-        return userRepo.findAllByStatus();
+        List<User> userList = userRepo.findAllByStatus();
+        if (userList.isEmpty()) {
+            throw new UserNotFoundException("No User Found !!");
+        }
+        return userList;
     }
 
+    //Find user by UserId
+    @Override
+    public User findUserById(int id) {
+        if (userRepo.existsById(id)) {
+            return userRepo.findById(id).get();
+        } else {
+            throw new UserNotFoundException("User Not Found With Id " + id);
+        }
+    }
+
+    //Get user by firstname/lastname/userid/emailid
+    @Override
+    public List<User> getUser(User user) {
+        List<User> userList = userRepo.findByFirstNameOrLastNameOrUserIdOrEmailId(
+                user.getFirstName(),
+                user.getLastName(),
+                user.getUserId(),
+                user.getEmailId());
+        if (userList.isEmpty()) {
+            throw new UserNotFoundException("User Not Found !!");
+        }
+        return userList;
+    }
 
     //Add new user
     @Override
@@ -44,43 +78,30 @@ public class CareupServiceImpl implements CareupService {
 
         //Data validation
         if (!validation.emailValidation(user.getEmailId())) {
-            apiResponse.setMsg("Email is not valid");
-            return apiResponse;
+            throw new InvalidUserDataException("Invalid Email Id !!");
         } else if (!validation.mobileValidation(user.getMobileNo())) {
-            apiResponse.setMsg("Mobile number is not valid");
-            return apiResponse;
+            throw new InvalidUserDataException("Invalid Mobile Number !!");
         } else if (!validation.pincodeValidation(user.getPincode())) {
-            apiResponse.setMsg("Pin code is not valid");
-            return apiResponse;
+            throw new InvalidUserDataException("Invalid Pincode !!");
         }
 //        else if (!validation.isBase64Encoded(user.getPhoto())) {
-//            apiResponse.setMsg("Invalid base64...");
-//            return apiResponse;
+//            throw new InvalidUserDataException("Invalid Base64 !!");
 //        }
         else {
-            try {
 //                String fileName = service.saveImg(user.getPhoto());
 //                user.setPhoto(fileName);
-                userRepo.save(user);
-                apiResponse.setObj(user);
-                apiResponse.setMsg("User successfully added...");
-            } catch (Exception e) {
-                apiResponse.setMsg("Failed to add user...");
-                e.printStackTrace();
+            try {
+                User savedUser = userRepo.save(user);
+                apiResponse.setObj(savedUser);
+                apiResponse.setMsg("User Registration Successfull !!");
+            } catch (RuntimeException e) {
+                apiResponse.setObj(null);
+                apiResponse.setMsg("User Registration Failed !!");
             }
             return apiResponse;
         }
     }
 
-    @Override
-    public User findUserById(int id) {
-        if (userRepo.existsById(id)) {
-            return userRepo.findById(id).get();
-
-        } else {
-            return null;
-        }
-    }
 
     //Update exist User Details
     @Override
@@ -97,40 +118,38 @@ public class CareupServiceImpl implements CareupService {
             user.setState(userDetails.getState());
             user.setPincode(userDetails.getPincode());
             user.setRole(userDetails.getRole());
-            userRepo.save(user);
-            apiResponse.setObj(user);
-            apiResponse.setMsg("User updated successfully...");
+            try {
+                userRepo.save(user);
+                apiResponse.setObj(user);
+                apiResponse.setMsg("User updated successfully !!");
+            } catch (RuntimeException e) {
+                apiResponse.setObj(null);
+                apiResponse.setMsg("Failed to update user !!");
+            }
             return apiResponse;
         } else {
-            apiResponse.setObj(null);
-            apiResponse.setMsg("Faied to update user....");
+            throw new UserNotFoundException("User Not Found !!");
         }
-        return apiResponse;
     }
 
     //Update exist user status
     @Override
-    public String inActive(boolean userStatus, int id) {
+    public ApiResponse updateUserStatus(boolean userStatus, int id) {
         if (userRepo.existsById(id)) {
             User user = userRepo.findById(id).get();
             user.setStatus(userStatus);
-            userRepo.save(user);
-            return "User Deleted Successfully...";
+            try {
+                User savedUser = userRepo.save(user);
+                apiResponse.setObj(savedUser);
+                apiResponse.setMsg("User Status Updated !!");
+            }catch (RuntimeException e){
+                apiResponse.setObj(null);
+                apiResponse.setMsg("Failed to update user status !!");
+            }
+            return apiResponse;
         } else {
-            return "Failed to Delete user Details...";
+            throw new UserNotFoundException("User Not Found !!");
         }
-    }
-
-
-    //Get user by firstname/lastname/userid/emailid
-    @Override
-    public List<User> getUser(User user) {
-        List<User> users = userRepo.findByFirstNameOrLastNameOrUserIdOrEmailId(
-                user.getFirstName(),
-                user.getLastName(),
-                user.getUserId(),
-                user.getEmailId());
-        return users;
     }
 
     //save image in directory
@@ -164,17 +183,15 @@ public class CareupServiceImpl implements CareupService {
         return fileName;
     }
 
-
     //Add new role
     @Override
     public ApiResponse addRole(Role role) {
         try {
             roleRepo.save(role);
-            apiResponse.setMsg("Role Added Successfully...");
-        } catch (Exception e) {
-            apiResponse.setMsg("Failed to add role...");
-            e.printStackTrace();
-            throw e;
+            apiResponse.setMsg("Role Added Successfully !!");
+        } catch (RuntimeException e) {
+            apiResponse.setObj(null);
+            apiResponse.setMsg("Failed to add role !!");
         }
         return apiResponse;
     }
@@ -182,7 +199,10 @@ public class CareupServiceImpl implements CareupService {
     //get all roles
     @Override
     public List<Role> findAllRoles() {
-        List<Role> roles = roleRepo.findAll();
-        return roles;
+        List<Role> roleList = roleRepo.findAll();
+        if (roleList.isEmpty()){
+            throw new UserNotFoundException("Roles Not Found !!");
+        }
+        return roleList;
     }
 }
