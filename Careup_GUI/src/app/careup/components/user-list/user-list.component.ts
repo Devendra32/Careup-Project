@@ -36,21 +36,24 @@ export class UserListComponent implements OnInit {
     this.router.navigate(['user',id])
   }
 
+
+  //User Update Button
   inActiveUser(id: any){
     
-    this.status=false;
-    this.userService.changeUserStatus(this.status ,id).subscribe(data => {
-      console.log(data, alert("User Deleted Successfully !!"))
-    },error => {console.log(error)});
-    
-    window.location.reload();
+    if(window.confirm("Do you want to Delete User?")){
+      this.status=false;
+      this.userService.changeUserStatus(this.status ,id).subscribe(data => {
+        console.log(data)
+      },error => {console.log(error)});
+      
+      window.location.reload();
+    }
     
   }
-  getUserById(id:number){
-    this.userService.getUserById(id).subscribe( data => {
-      this.user = data
-      console.log(data);
-    }, error => console.log(error));
+
+  //User details button
+  viewUser(id: any){
+    this.router.navigate(['app-user-details',id])
   }
   
   deteleUser(userId:number , user:User) {

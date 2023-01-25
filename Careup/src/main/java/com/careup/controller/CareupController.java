@@ -24,7 +24,6 @@ public class CareupController {
     @GetMapping("/users")
     public List<User> findAllUser() {
         return this.careupService.findAllUser();
-//        return  new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     //Get all active users

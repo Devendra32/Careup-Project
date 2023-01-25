@@ -1,1 +1,15 @@
-<p>user-details works!</p>
+<div class="container text-white">
+    <h6>{{user.userId}}</h6>
+    <h6>{{user.firstName}}</h6>
+    <h6>{{user.lastName}}</h6>
+    <h6>{{user.emailId}}</h6>
+    <h6>{{user.mobileNo}}</h6>
+    <h6>{{user.address}}</h6>
+    <h6>{{user.address2}}</h6>
+    <h6>{{user.city}}</h6>
+    <h6>{{user.state}}</h6>
+    <h6>{{user.pincode}}</h6>
+    <h6>{{user.role.roleName}}</h6>
+    <h6 *ngIf="user.status; else elseBlock">ACTIVE</h6>
+    <ng-template #elseBlock>IN-ACTIVE</ng-template>
+</div>

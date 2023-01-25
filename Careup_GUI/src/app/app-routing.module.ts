@@ -5,6 +5,7 @@ import { UserListComponent } from './careup/components/user-list/user-list.compo
 import { UserComponent } from './careup/components/user/user.component';
 import { AddRoleComponent } from './careup/components/add-role/add-role.component';
 import { UserUpdateComponent } from './careup/components/user-update/user-update.component';
+import { UserDetailsComponent } from './careup/components/user-details/user-details.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path:'users',component:UserListComponent},
   {path:'add-role',component:AddRoleComponent},
   {path:'user/:id',component:UserUpdateComponent},
+  {path:'app-user-details/:id',component:UserDetailsComponent},
   {path: '', redirectTo: 'home', pathMatch:'full'}
 ];
 

@@ -26,6 +26,7 @@ export class UserUpdateComponent implements OnInit {
       this.user = data;  
     }, error => console.log(error));
   }
+  
   onSubmit() {
     // console.log("User : ",this.userUpdateForm.value);
     // console.log(this.userId);
