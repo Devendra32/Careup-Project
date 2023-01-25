@@ -19,9 +19,9 @@
                 <td>{{user.city}}</td>
                 <td>{{user.role.roleName}}</td>
                 <td >
+                    <button (click)="viewUser(user.userId)" class="btn btn-primary btn-sm mx-1">Details</button>
                     <button (click)="getUser(user.userId)" class="btn btn-info btn-sm mx-1">Update</button>
                     <button (click)="inActiveUser(user.userId)" class="btn btn-danger btn-sm mx-1">Delete</button>
-                    <!-- <button (click)="viewUser(user.userId)" class="btn btn-info btn-sm mx-1">View</button> -->
                 </td>
             </tr>
         </tbody>

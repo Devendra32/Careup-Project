@@ -36,12 +36,11 @@ public class User {
     private String pincode;
     @Column(length = 50)
     private String photo;
-    @Column(nullable = false, columnDefinition = "smallint")
-    @Value("1")
-    private short status = 1;
+
+    @Column(nullable = false)
+    private boolean status=true;
 
     @OneToOne
     @JoinColumn(name = "roleId", nullable = false)
     private Role role;
-
 }
