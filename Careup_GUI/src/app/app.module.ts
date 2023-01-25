@@ -12,6 +12,12 @@ import { AddRoleComponent } from './careup/components/add-role/add-role.componen
 import { NavbarComponent } from './careup/components/navbar/navbar.component';
 import { UserUpdateComponent } from './careup/components/user-update/user-update.component';
 import { UserDetailsComponent } from './careup/components/user-details/user-details.component';
+import { UserComponent } from './careup/user/user.component';
+import { UserListComponent } from './careup/user-list/user-list.component';
+import { CareupHomeComponent } from './careup/careup-home/careup-home.component';
+import { AddRoleComponent } from './careup/add-role/add-role.component';
+import { NavbarComponent } from './careup/navbar/navbar.component';
+import { UserUpdateComponent } from './careup/user-update/user-update.component';
 
 @NgModule({
     declarations: [
@@ -21,8 +27,7 @@ import { UserDetailsComponent } from './careup/components/user-details/user-deta
         CareupHomeComponent,
         AddRoleComponent,
         NavbarComponent,
-        UserUpdateComponent,
-        UserDetailsComponent
+        UserUpdateComponent
     ],
     providers: [],
     bootstrap: [AppComponent],
