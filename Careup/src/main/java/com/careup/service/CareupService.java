@@ -21,12 +21,10 @@ public interface CareupService {
 
     public ApiResponse addRole(Role role);
 
-    //    public ApiResponse updateUser(User user);
     public ApiResponse updateUserDetails(User userDetails, int id);
 
     public String inActive(boolean userStatus, int id);
 
     public List<Role> findAllRoles();
-//    public List<User> getUserByRole(Role role);
 
 }

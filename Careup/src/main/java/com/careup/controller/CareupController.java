@@ -54,22 +54,17 @@ public class CareupController {
 
     //update status
     @PutMapping("/status/{userStatus}/{id}")
-     public String inActiveUserDetail(@PathVariable boolean userStatus, @PathVariable int id) {
+    public String inActiveUserDetail(@PathVariable boolean userStatus, @PathVariable int id) {
         return this.careupService.inActive(userStatus, id);
     }
 
-    //Get by Id
+    //Get by UserId
     @GetMapping("/user/{id}")
     public ResponseEntity<User> findUserById(@PathVariable int id) {
         User userById = this.careupService.findUserById(id);
         return new ResponseEntity<>(userById, HttpStatus.OK);
     }
 
-
-//    @GetMapping("/get-user-role")
-//    public List<User> getUserByRole(@RequestBody Role role){
-//        return careupService.getUserByRole(role);
-//    }
 
     //Add new role
     @PostMapping("/add-role")

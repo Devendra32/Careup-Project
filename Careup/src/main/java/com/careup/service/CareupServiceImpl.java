@@ -82,17 +82,7 @@ public class CareupServiceImpl implements CareupService {
         }
     }
 
-//    //Update user
-//    @Override
-//    public ApiResponse updateUser(User user) {
-//        if (userRepo.existsById(user.getUserId())) {
-//            User savedUser = userRepo.save(user);
-//            apiResponse.setObj(savedUser);
-//            apiResponse.setMsg("Updated successfully");
-//        }
-//        return apiResponse;
-//    }
-
+    //Update exist User Details
     @Override
     public ApiResponse updateUserDetails(User userDetails, int id) {
         if (userRepo.existsById(id)) {
@@ -118,6 +108,7 @@ public class CareupServiceImpl implements CareupService {
         return apiResponse;
     }
 
+    //Update exist user status
     @Override
     public String inActive(boolean userStatus, int id) {
         if (userRepo.existsById(id)) {
@@ -194,10 +185,4 @@ public class CareupServiceImpl implements CareupService {
         List<Role> roles = roleRepo.findAll();
         return roles;
     }
-
-//    @Override
-//    public List<User> getUserByRole(Role role) {
-//        List<User> byRole = userRepo.findByRole(role);
-//        return byRole;
-//    }
 }
