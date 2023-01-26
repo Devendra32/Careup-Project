@@ -72,7 +72,7 @@
             required email  
             class="form-control" 
             autocomplete="off" 
-            
+            placeholder="test@example.com"
             />
             <span 
             *ngIf="userForm.controls['emailId'].invalid && userForm.controls['emailId'].touched" 
@@ -91,7 +91,7 @@
             class="form-control" 
             (keypress)="numberOnly($event)" 
             autocomplete="off" 
-            
+            placeholder="Enter 10 digits only"
             />
             <span *ngIf="userForm.controls['mobileNo'].invalid && userForm.controls['mobileNo'].touched" 
             class="error-msg">Ente valid mobile</span>

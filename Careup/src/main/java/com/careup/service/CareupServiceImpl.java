@@ -93,7 +93,7 @@ public class CareupServiceImpl implements CareupService {
             try {
                 User savedUser = userRepo.save(user);
                 apiResponse.setObj(savedUser);
-                apiResponse.setMsg("User Registration Successfull !!");
+                apiResponse.setMsg("Successfully Registered !!");
             } catch (RuntimeException e) {
                 apiResponse.setObj(null);
                 apiResponse.setMsg("User Registration Failed !!");
@@ -187,11 +187,12 @@ public class CareupServiceImpl implements CareupService {
     @Override
     public ApiResponse addRole(Role role) {
         try {
-            roleRepo.save(role);
+            Role savedRole = roleRepo.save(role);
+            apiResponse.setObj(savedRole);
             apiResponse.setMsg("Role Added Successfully !!");
         } catch (RuntimeException e) {
             apiResponse.setObj(null);
-            apiResponse.setMsg("Failed to add role !!");
+            apiResponse.setMsg("Role Already Exists !!");
         }
         return apiResponse;
     }

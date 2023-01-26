@@ -118,9 +118,9 @@ public class CareupController {
     public ResponseEntity<ApiResponse> addRole(@RequestBody Role role) {
         apiResponse = this.careupService.addRole(role);
         if (apiResponse.getObj() != null) {
-            return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+            return new ResponseEntity(apiResponse.getMsg(), HttpStatus.OK);
         } else {
-            return new ResponseEntity(apiResponse.getMsg(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity(apiResponse.getMsg(), HttpStatus.BAD_REQUEST);
         }
     }
 

@@ -41,7 +41,7 @@ export class UserComponent implements OnInit {
     this.getRoles();
   }
   onSubmit() {
-    console.log("User : ",this.userForm.value);
+    // console.log("User : ",this.userForm.value);
     this.saveUser(this.userForm.value);
     this.userForm.reset();
    }
@@ -49,14 +49,12 @@ export class UserComponent implements OnInit {
     this.userService.addUser(user).subscribe(data => {
       console.log(data, alert("User Added successfully..."));
     },
-    error => console.log(error, alert("Failed to add user...")));
+    error => console.warn(error, alert(error.error)));
   }
 
   private getRoles() {
     this.userService.getRoleList().subscribe(data => {
       this.roles = data;
-      console.log("Data: ", this.roles);
-      
     });
   }
   numberOnly(event: { which: any; keyCode: any; }): boolean {

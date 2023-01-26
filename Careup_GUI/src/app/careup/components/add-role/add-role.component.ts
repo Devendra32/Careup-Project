@@ -11,29 +11,28 @@ import { UserService } from '../../services/user.service';
 export class AddRoleComponent implements OnInit {
   role: Role = new Role();
   roles!: Role[];
-  rolefail : string = '';
+  
+
   constructor(private userService: UserService, private fb: FormBuilder) { }
 
   roleForm = this.fb.group({
     roleName : ['']
   });
 
-  
-
   ngOnInit(): void {
     this.getRoles();
   }
   onSubmit(roleForm : any) {
-    console.log(this.roleForm.value);
     this.addRole(this.roleForm.value);
     this.roleForm.reset();
   }
   addRole(value:any) {
     this.userService.addRole(value).subscribe(data => {
-      console.log(data, alert("Role Successfully Added..."));
+
+      console.log(data);
       this.getRoles();
     },
-    error => console.log(error, alert("Role Already Exist...")));
+    error => console.log(error, alert(error.error)));
   }
   private getRoles() {
     this.userService.getRoleList().subscribe(data => {
