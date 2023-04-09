@@ -30,7 +30,7 @@ public class CareupController {
             this.usersList = this.careupService.findAllUser();
             return new ResponseEntity<>(usersList, HttpStatus.OK);
         } catch (UserNotFoundException e) {
-            return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 
@@ -41,7 +41,7 @@ public class CareupController {
             usersList = this.careupService.findAllUserByStatus();
             return new ResponseEntity<>(usersList, HttpStatus.OK);
         } catch (UserNotFoundException e) {
-            return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 
@@ -52,7 +52,7 @@ public class CareupController {
             User userById = this.careupService.findUserById(id);
             return new ResponseEntity<>(userById, HttpStatus.OK);
         } catch (UserNotFoundException e) {
-            return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 
@@ -64,7 +64,7 @@ public class CareupController {
             this.usersList = this.careupService.getUser(user);
             return new ResponseEntity<>(usersList, HttpStatus.OK);
         } catch (UserNotFoundException e) {
-            return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 
@@ -79,7 +79,7 @@ public class CareupController {
                 return new ResponseEntity(apiResponse.getMsg(), HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } catch (InvalidUserDataException e) {
-            return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+            return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -109,7 +109,7 @@ public class CareupController {
                 return new ResponseEntity(apiResponse.getMsg(), HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } catch (UserNotFoundException e) {
-            return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 
@@ -120,7 +120,7 @@ public class CareupController {
         if (apiResponse.getObj() != null) {
             return new ResponseEntity(apiResponse.getMsg(), HttpStatus.OK);
         } else {
-            return new ResponseEntity(apiResponse.getMsg(), HttpStatus.OK);
+            return new ResponseEntity(apiResponse.getMsg(), HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -131,7 +131,7 @@ public class CareupController {
             List<Role> allRoles = this.careupService.findAllRoles();
             return new ResponseEntity<>(allRoles, HttpStatus.OK);
         } catch (UserNotFoundException e) {
-            return new ResponseEntity(e.getMessage(), HttpStatus.OK);
+            return new ResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 }
